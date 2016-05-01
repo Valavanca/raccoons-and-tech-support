@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>mockup</title>
+  <meta name="charset" content="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="css/styles.min.css">
+</head>
+
+<body>
+<div class="wrapper">
+    <div class="notebook">
+      <input type="radio" name="notebook1" id="notebook1_1"><label for="notebook1_1">Первая вкладка</label
+      ><input type="radio" name="notebook1" id="notebook1_2"><label for="notebook1_2">Вторая вкладка</label
+      ><input type="radio" name="notebook1" id="notebook1_3" checked><label for="notebook1_3">Третья вкладка</label>
+    <!--content-->
+    <div>
+        <h3>Это первая вкладка. :)</h3>
+    </div>
+    <div>
+        <h3>Это вторая вкладка!</h3>
+        <p>Бесцветные зелёные мысли яростно спят.</p>
+    </div>
+    <div> 
+        <div class="head">
+            <button class="long">назад к списку</button>
+            <p class="title">ТИКЕТ МММ-888-88888</p>
+            <p><strong class="title">Тема:</strong>Я оплатил заявку, но мне ничего не 
+пришло. Что делать? Кто виноват?</p>
+            <p><strong class="title">Статус:</strong>Открыта</p>
+            <p><strong class="title">Приоритет:</strong>Обычный</p>
+            <p><strong class="title">Отдел:</strong>Бухгалтерия</p>
+            <p><strong class="title">Создан:</strong>2015-12-06 12:42:18</p>
+            <p><strong class="title">Последний вопрос:</strong>2015-12-06 12:42:18</p>
+            <p><strong class="title">Последний ответ:</strong>2015-12-06 12:42:18</p>
+        </div> <!-- end head -->
+        
+        <div class="converse">
+            <div class="message">
+                <img src="" alt="" class="avatar">
+                <span class="log">example@mail.com </span>
+                <span class="name">(Геннадий Васильевич Енот)</span>
+                <span class="time">2015-12-06  // 12:42:18</span>
+                <p>Где мои деньги? Я оплатил заявку, но мне ничего не пришло. Что делать? Кто виноват? Почему в моей жизни 
+                никогда ничего не происходит нормально? Почему даже с переводом денег возникают такие сложности? Меня 
+                игнорирует даже мой кот.</p>
+            <!-- child msg-->
+                   <div class="message">
+                        <img src="" alt="" class="avatar">
+                        <span class="log">Агент поддержки </span>
+                        <span class="name">(Наталья Медведева)</span>
+                        <span class="time">2015-12-06  // 13:47:33</span>
+                        <p>Геннадий, время транзакции может занимать до 40 минут. Это техническая особенность 
+                        процесса. Трудности Вашей жизни возможно связаны с тем, что Вы очень эмоциональная 
+                        натура. Успокойтесь, попейте чай. Погладьте кота.</p>   
+                    </div>
+            </div> 
+            <div class="message">
+                <img src="" alt="" class="avatar">
+                <span class="log">example@mail.com </span>
+                <span class="name">(Геннадий Васильевич Енот)</span>
+                <span class="time">2015-12-06  // 12:42:18</span>
+                <p>Но я не могу погладить кота, он меня игнорирует даже если я его глажу!!!!111 адын адын. Вот посмотрите, я 
+                сфотографировал: 
+                <span class="file">фото_кота.jpg</span></p>
+            <!-- child msg-->
+                   <div class="message">
+                        <img src="" alt="" class="avatar">
+                        <span class="log">Агент поддержки </span>
+                        <span class="name">(Наталья Медведева)</span>
+                        <span class="time">2015-12-06  // 13:47:33</span>
+                        <p>Геннадий, не расстраивайтесь. Иногда коты игнорируют не только людей, но и енотов. Мы
+                        обещаем, что скоро все исправится.</p>   
+                    </div>
+            </div>
+        </div> <!--end conversation-->
+        <div class="new_message">
+            <img src="" alt="" class="avatar"> 
+            <form action="/login" method="post">
+              <textarea name="comment"></textarea>
+              <button name="submit">Ответить</button>
+              <div class="attache">
+                  <input type="file" name="file">
+             <p class="demand">Допустимый объем файла - до 2 МБ</p>
+             <p class="demand">Допустимые форматы файла - JPG, PNG, GIF, TXT, 
+DOCX, RTF, PDF</p>
+              </div>
+            </form>
+        </div> <!--end new_message-->
+        <a href="#" class="button">НАВЕРХ</a>
+    </div> <!-- end 3-th tab-->
+    </div>
+</div> <!-- end wrapper -->
+  
+ 
+  
+    
+<script src="bower_components/jquery/dist/jquery.js" type="text/javascript" charset="utf-8"></script>
+<script src="bower_components/breakpoint/jquery.breakpoint.js" type="text/javascript" charset="utf-8"></script>
+</body>
+</html>

@@ -1,0 +1,338 @@
+
+@import "bower_components/susy/sass/susy";
+@import "bower_components/compass-breakpoint/stylesheets/breakpoint";
+
+//@import "reset";
+//@import "variables";
+
+// Susy
+$susy: (
+  columns: 12,
+  gutters: 1/2,
+  math: fluid,
+  gutter-position: outside,
+);
+
+// variables
+  $font-fml: Geneva, Arial, Helvetica, sans-serif;
+  $font-sz: 1.1em;
+  $color-tx: #black;
+  $color-bg: #fff;
+  $high-tide: 600px;
+
+  $color-primary: #6A9641;
+  $color-secondary: #EBB010;
+  $white: #EDE3C7;
+  $black: #2E2713;
+  $color-background: #B8BFCF;
+
+  $breakpoint-medium: 800px;
+  $font-size-default: 14pt;
+  $breakpoint-large: 1000px;
+html,body{
+  font-family: $font-fml;
+  font-size: $font-sz;
+  //line-height: $line-height;
+  color: $color-tx;
+  background-color: $color-bg;
+  margin:0;
+  padding:0;
+  overflow-x:hidden;
+}
+
+a{
+  text-decoration: none;
+}
+
+.wrapper{
+  padding: 1em .6em;
+}
+
+// Tabs
+.notebook {
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.notebook > input {
+    display: none;
+}
+
+.notebook > input + label {
+    display: inline-block;
+    background-color: #E5E5E5;
+    padding: .7em;
+    cursor: pointer;
+    position: relative;
+    &:not(:last-of-type) {
+        border-right: none;
+    }
+    &:hover {
+        background-color: #F6F6F6;
+    }
+    &:last-of-type::after {
+        display: block;
+        border-bottom: 1px solid gray; // полоска уявного блока
+        width: 2000px;
+        content: "";
+        position: absolute;
+        left: 100%;
+    } 
+}
+
+.notebook > input:checked + label {
+    background-color: #fff;
+    color: #1169E9;
+    padding-top: 1.1em;
+    margin-top: .6em;
+    box-shadow: 0 -5px 10px rgba(0,0,0,0.3);
+    border-bottom: none;
+    &:last-of-type::after {
+        bottom: 0px;
+    }
+}
+
+.notebook > div {
+    white-space: normal;
+    display: none;
+    border: 1px solid gray;
+    border-top: none;
+    margin: 0px;
+    padding: 2px 20px;
+}
+.notebook > input:nth-of-type(1):checked ~ div:nth-of-type(1),
+.notebook > input:nth-of-type(2):checked ~ div:nth-of-type(2),
+.notebook > input:nth-of-type(3):checked ~ div:nth-of-type(3) {
+    display: block;
+}
+
+// ***********************************
+// МАЛЕНЬКИЕ УСТРОЙСТВА
+// ***********************************
+@include breakpoint(600px) {
+  h1{
+    color: $color-secondary;
+    font-size: 15pt;
+  }
+  h2{
+    font-size: 1.2em;
+    margin:0;
+    padding:0;
+  }
+  
+  // Заголовок сайта
+  header{
+    @include span(12);
+    background-color:$color-secondary;
+    padding:0 1%;
+    color: $white;
+    h2{
+      @include span(12);
+      font-size: 1.5em;
+      padding:0 0.4em;
+    }
+    nav{
+      @include span(12);
+    }
+    ul{
+      list-style-type: none;
+      padding:0;
+      margin:0;
+      padding-left:0.1em;
+      li{
+        display: inline-block;
+        a{
+          font-size: 1em;
+          display: block;
+          padding: 0.5em;
+        }
+      }
+    }
+    a{
+      color: $white;
+      &:hover{
+        color: $black;
+      }
+    }
+  }
+  // Последние посты
+  .latest-posts{
+    @include span(12);
+
+    article{
+      border:1px solid $color-background;
+      padding:0.5em;
+      margin-bottom: 1em;
+      p{
+        font-size: 0.9em;
+      }
+      a{
+        color: darken($color-background, 25%);
+      }
+      footer{
+        font-size: 0.9em;
+        color:#333;
+      }
+    }
+  }
+  // Популярные посты
+  .popular-posts{
+    @include span(12);
+    article{
+      background-color:lighten($color-background, 5%);
+      border:1px solid $color-background;
+      padding:0.5em;
+      margin-bottom: 1em;
+      a{
+        color: darken($color-background, 20%);;
+      }
+    }
+  }
+  // Подвал
+  .footer{
+    @include span(12);
+    background-color:$color-secondary;
+    font-size: 1em;
+    padding:0.5em 1%;
+    color: $white;
+    a{
+      color:lighten( $color-primary, 22%);
+      &:hover{
+        color: $black;
+      }
+    }
+  }
+}
+
+// ***********************************
+// СРЕДНИЕ УСТРОЙСТВА
+// ***********************************
+@include breakpoint($breakpoint-medium){
+
+// Здесь мы просто изменим что необходимо модифицировать,
+// потому что предыдущий стиль применяется автоматически
+
+  // Заголовок сайта
+  header{
+    @include span(12);
+    background-color:$color-primary;
+    h2{
+      @include span(3);
+      font-size: 3em;
+    } 
+    nav{
+      @include span(8);
+    }
+    ul{
+      text-align: right;
+      margin-top:0.4em;
+      li{
+        a{
+          font-size: 1.7em;
+        }
+      }
+    }
+  }
+
+  // Последние посты
+  .latest-posts{
+    @include span(6);
+    article{
+      h2{
+        font-size: 1.8em;
+      }
+      border:1px solid $color-background;
+      padding:0.5em;
+      margin-bottom: 2em;
+      clear: both;
+      p{
+        font-size: $font-size-default+50;
+      }
+      a{
+        color: darken($color-background, 25%);
+      }
+      footer{
+        font-size: 1.3em;
+      }
+    }
+  }
+
+  // Популярные посты
+  .popular-posts{
+    @include span(6);
+    padding-left:1em;
+    article{
+      h2{
+        font-size: 1.8em;
+      }
+      background-color:lighten($color-background, 2%);
+      border:1px solid transparent;
+      padding:0.5em;
+      margin-bottom: 1em;
+      p{
+        font-size: $font-size-default+50;
+      }
+      a{
+        color: darken($color-background, 20%);;
+      }
+      footer{
+        font-size: 1.3em;
+      }
+    }
+  }
+
+  // Подвал
+  .footer{
+    @include span(12);
+    background-color:$color-primary;
+    font-size: 1.5em;
+  }
+}
+  
+// ***********************************
+// БОЛЬШИЕ УСТРОЙСТВА
+// ***********************************
+@include breakpoint($breakpoint-large){
+
+// Здесь мы просто изменим что необходимо модифицировать,
+// потому что предыдущий стиль применяется автоматически
+
+  // Заголовок сайта
+  header{
+    @include span(12);
+    background-color:lighten($color-primary, 15%);
+    padding:0%;
+  }
+   // Последние посты
+  .latest-posts{
+    // оставим пустым, это значит что будет применяться предыдущий стиль
+  }
+  // Популярные посты
+  .popular-posts{
+    @include span(6);
+    padding-left:1em;
+    article{
+      h2{
+        font-size: 1.8em;
+      }
+      background-color:lighten($color-background, 2%);
+      border:1px solid transparent;
+      padding:0.5em;
+      margin-bottom: 1em;
+      p{
+        font-size: $font-size-default+50;
+      }
+      a{
+        color: darken($color-background, 20%);;
+      }
+      footer{
+        font-size: 1.3em;
+      }
+    }
+  }
+  // Подвал
+  .footer{
+    padding:0em;
+    background-color:lighten($color-primary, 15%);
+  }
+}
