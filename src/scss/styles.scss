@@ -10,13 +10,20 @@ $susy: (
   columns: 12,
   gutters: 1/2,
   math: fluid,
-  gutter-position: outside,
+  gutter-position: after, //inside
+  debug: (
+    image: show,
+    color: rgba(#16f416, .15),
+    output: overlay,
+    toggle: top right,
+  )
 );
 
 // variables
   $font-fml: Geneva, Arial, Helvetica, sans-serif;
+  $font-size-default: 14pt;
   $font-sz: 1.1em;
-  $color-tx: #black;
+  $color-tx: #B4B4B4;
   $color-bg: #fff;
   $high-tide: 600px;
 
@@ -24,10 +31,11 @@ $susy: (
   $color-secondary: #EBB010;
   $white: #EDE3C7;
   $black: #2E2713;
+  $blue: #1169E9;
   $color-background: #B8BFCF;
-
+  
+  $breakpoint-small: 320px;
   $breakpoint-medium: 800px;
-  $font-size-default: 14pt;
   $breakpoint-large: 1000px;
 html,body{
   font-family: $font-fml;
@@ -45,294 +53,214 @@ a{
 }
 
 .wrapper{
-  padding: 1em .6em;
+  //padding: 1em .6em;
 }
 
-// Tabs
-.notebook {
-    white-space: nowrap;
-    overflow: hidden;
-}
 
-.notebook > input {
-    display: none;
-}
-
-.notebook > input + label {
-    display: inline-block;
-    background-color: #E5E5E5;
-    padding: .7em;
-    cursor: pointer;
-    position: relative;
-    &:not(:last-of-type) {
-        border-right: none;
-    }
-    &:hover {
-        background-color: #F6F6F6;
-    }
-    &:last-of-type::after {
-        display: block;
-        border-bottom: 1px solid gray; // полоска уявного блока
-        width: 2000px;
-        content: "";
-        position: absolute;
-        left: 100%;
-    } 
-}
-
-.notebook > input:checked + label {
-    background-color: #fff;
-    color: #1169E9;
-    padding-top: 1.1em;
-    margin-top: .6em;
-    box-shadow: 0 -5px 10px rgba(0,0,0,0.3);
-    border-bottom: none;
-    &:last-of-type::after {
-        bottom: 0px;
-    }
-}
-
-.notebook > div {
-    white-space: normal;
-    display: none;
-    border: 1px solid gray;
-    border-top: none;
-    margin: 0px;
-    padding: 2px 20px;
-}
-.notebook > input:nth-of-type(1):checked ~ div:nth-of-type(1),
-.notebook > input:nth-of-type(2):checked ~ div:nth-of-type(2),
-.notebook > input:nth-of-type(3):checked ~ div:nth-of-type(3) {
-    display: block;
-}
 
 // ***********************************
 // МАЛЕНЬКИЕ УСТРОЙСТВА
 // ***********************************
-@include breakpoint(600px) {
-  h1{
-    color: $color-secondary;
-    font-size: 15pt;
-  }
-  h2{
-    font-size: 1.2em;
-    margin:0;
-    padding:0;
-  }
-  
-  // Заголовок сайта
-  header{
-    @include span(12);
-    background-color:$color-secondary;
-    padding:0 1%;
-    color: $white;
-    h2{
-      @include span(12);
-      font-size: 1.5em;
-      padding:0 0.4em;
-    }
-    nav{
-      @include span(12);
-    }
-    ul{
-      list-style-type: none;
-      padding:0;
-      margin:0;
-      padding-left:0.1em;
-      li{
-        display: inline-block;
-        a{
-          font-size: 1em;
-          display: block;
-          padding: 0.5em;
+@include breakpoint($breakpoint-small) {
+     // Tabs box
+    .notebook { 
+        white-space: nowrap;
+        overflow: hidden;
+        padding-top: .6em;
+        > input {
+            display: none;
+            }
+        > input + label {
+            display: block;
+            background-color: #E5E5E5;
+            padding: .7em;
+            cursor: pointer;
+            position: relative;
+            &:not(:last-of-type) {
+                border-right: none;
+            }
+            &:hover {
+                background-color: #F6F6F6;
+            }
+            &:last-of-type::after {
+                display: block;
+                border-bottom: 1px solid gray; // полоска уявного блока
+                width: 2000px;
+                content: "";
+                position: absolute;
+                left: 100%;
+            } 
         }
-      }
+        > input:checked + label {
+            background-color: #fff;
+            color: $blue;
+            //padding-top: 1.1em;
+            //margin-top: .6em;
+            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+            border-bottom: none;
+            &:last-of-type::after {
+                bottom: 0px;
+            }
+        }
     }
-    a{
-      color: $white;
-      &:hover{
-        color: $black;
-      }
+    .notebook > input:nth-of-type(1):checked ~ div:nth-of-type(1),
+    .notebook > input:nth-of-type(2):checked ~ div:nth-of-type(2),
+    .notebook > input:nth-of-type(3):checked ~ div:nth-of-type(3) {
+        display: block;
     }
-  }
-  // Последние посты
-  .latest-posts{
-    @include span(12);
-
-    article{
-      border:1px solid $color-background;
-      padding:0.5em;
-      margin-bottom: 1em;
-      p{
-        font-size: 0.9em;
-      }
-      a{
-        color: darken($color-background, 25%);
-      }
-      footer{
-        font-size: 0.9em;
-        color:#333;
-      }
+    .tab {
+        @include container(90%);
+        white-space: normal; 
+        display: none;
     }
-  }
-  // Популярные посты
-  .popular-posts{
-    @include span(12);
-    article{
-      background-color:lighten($color-background, 5%);
-      border:1px solid $color-background;
-      padding:0.5em;
-      margin-bottom: 1em;
-      a{
-        color: darken($color-background, 20%);;
-      }
+    //////////////////
+    //  Header
+    //////////////////
+    #head {
+        @include span(12);
+        border-bottom: 1px solid $color-tx;
+        margin-bottom: span(1);
+        > .title {
+            text-transform: uppercase;
+        }
+        strong {
+            color: #B4B4B4;
+        }
+        button.long {
+            @include span(8);
+            font-size: $font-sz;
+            color: #1169E9;
+            background-color: #fff;
+            border: none;
+            margin-left: span(2 wide);
+            margin-bottom: span(1);
+            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+            height: 1.7em;
+            &::before {
+                content: "<<";
+                font-weight: 900;
+                margin-right: span(1);
+                
+            }
+        }
     }
-  }
-  // Подвал
-  .footer{
-    @include span(12);
-    background-color:$color-secondary;
-    font-size: 1em;
-    padding:0.5em 1%;
-    color: $white;
-    a{
-      color:lighten( $color-primary, 22%);
-      &:hover{
-        color: $black;
-      }
+    
+    /////
+    
+    #converse {
+        @include span(12 nest);
+        border-bottom: 1px solid $color-tx;
+        padding-bottom: 1em;
+        .avatar {
+            @include span(first 3 of 12);
+        }
+        .log,
+        .name {
+            display: block;
+            font-weight: 600;
+        }
+        .message {
+            padding: 0.3em;
+            > .message {
+                background-color: #F6F6F6;
+                .avatar {
+                    @include span(last 3 of 12);
+                }
+            }
+        }
+        span.file {
+            font-weight: 200;
+            color: $blue;
+        }
     }
-  }
+    
+    /////
+    
+    footer#new_message {
+        @include span(12);
+        border-bottom: 1px solid $color-tx;
+        padding-bottom: 1em;
+        span.title{
+            @include span(12);
+            text-align: center;
+            color: $blue;
+            text-transform: uppercase;
+            margin: .5em;
+        }
+        .avatar {
+            display: none;
+        }
+        textarea {
+            @include span(12);
+            height: 6em;
+        }
+        button {
+                border: none;
+                box-shadow: 0 0 15px rgba(0,0,0,0.5);
+                background-color: #fff;
+                color: $blue;
+                &[name=submit] {
+                    margin: .4em;
+                    padding: .4em;
+                    @include span(10);
+                    @include push(1);
+                }
+        }
+        
+    } 
+        .attache {
+            @include span(12);
+            position: relative;
+            overflow: hidden;
+            padding: 1em 1em 1em 0;
+            height: 1.6em;      
+            > button {
+                float: right;
+                height: 100%
+            }
+            > div{
+                border: 1px solid $color-tx;
+                font-size: .8em;
+                height: 1.8em;
+                vertical-align: middle;
+            }
+            input[type=file]{
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                opacity: 0;
+                cursor: pointer
+            }
+        }
+        .demand {
+        color: #FF0000;
+        font-size: .8em;
+        margin: .3em;
+    } /*end footer*/
+    .up {
+        @include span(12);
+        text-align: center;
+        margin: .4em 0;
+        &::before {
+            content: "^";
+            font-weight: 900;
+            margin-right: .3em;
+        }
+    }
+    
 }
-
 // ***********************************
 // СРЕДНИЕ УСТРОЙСТВА
 // ***********************************
 @include breakpoint($breakpoint-medium){
 
-// Здесь мы просто изменим что необходимо модифицировать,
-// потому что предыдущий стиль применяется автоматически
 
-  // Заголовок сайта
-  header{
-    @include span(12);
-    background-color:$color-primary;
-    h2{
-      @include span(3);
-      font-size: 3em;
-    } 
-    nav{
-      @include span(8);
-    }
-    ul{
-      text-align: right;
-      margin-top:0.4em;
-      li{
-        a{
-          font-size: 1.7em;
-        }
-      }
-    }
-  }
-
-  // Последние посты
-  .latest-posts{
-    @include span(6);
-    article{
-      h2{
-        font-size: 1.8em;
-      }
-      border:1px solid $color-background;
-      padding:0.5em;
-      margin-bottom: 2em;
-      clear: both;
-      p{
-        font-size: $font-size-default+50;
-      }
-      a{
-        color: darken($color-background, 25%);
-      }
-      footer{
-        font-size: 1.3em;
-      }
-    }
-  }
-
-  // Популярные посты
-  .popular-posts{
-    @include span(6);
-    padding-left:1em;
-    article{
-      h2{
-        font-size: 1.8em;
-      }
-      background-color:lighten($color-background, 2%);
-      border:1px solid transparent;
-      padding:0.5em;
-      margin-bottom: 1em;
-      p{
-        font-size: $font-size-default+50;
-      }
-      a{
-        color: darken($color-background, 20%);;
-      }
-      footer{
-        font-size: 1.3em;
-      }
-    }
-  }
-
-  // Подвал
-  .footer{
-    @include span(12);
-    background-color:$color-primary;
-    font-size: 1.5em;
-  }
 }
-  
 // ***********************************
 // БОЛЬШИЕ УСТРОЙСТВА
 // ***********************************
 @include breakpoint($breakpoint-large){
 
-// Здесь мы просто изменим что необходимо модифицировать,
-// потому что предыдущий стиль применяется автоматически
-
-  // Заголовок сайта
-  header{
-    @include span(12);
-    background-color:lighten($color-primary, 15%);
-    padding:0%;
-  }
-   // Последние посты
-  .latest-posts{
-    // оставим пустым, это значит что будет применяться предыдущий стиль
-  }
-  // Популярные посты
-  .popular-posts{
-    @include span(6);
-    padding-left:1em;
-    article{
-      h2{
-        font-size: 1.8em;
-      }
-      background-color:lighten($color-background, 2%);
-      border:1px solid transparent;
-      padding:0.5em;
-      margin-bottom: 1em;
-      p{
-        font-size: $font-size-default+50;
-      }
-      a{
-        color: darken($color-background, 20%);;
-      }
-      footer{
-        font-size: 1.3em;
-      }
-    }
-  }
-  // Подвал
-  .footer{
-    padding:0em;
-    background-color:lighten($color-primary, 15%);
-  }
 }

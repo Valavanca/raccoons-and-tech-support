@@ -10,34 +10,34 @@
 <body>
 <div class="wrapper">
     <div class="notebook">
-      <input type="radio" name="notebook1" id="notebook1_1"><label for="notebook1_1">Первая вкладка</label
-      ><input type="radio" name="notebook1" id="notebook1_2"><label for="notebook1_2">Вторая вкладка</label
-      ><input type="radio" name="notebook1" id="notebook1_3" checked><label for="notebook1_3">Третья вкладка</label>
+      <input type="radio" name="notebook1" id="notebook1_1"><label for="notebook1_1">Вопрос/ответ</label
+      ><input type="radio" name="notebook1" id="notebook1_2"><label for="notebook1_2">Инструкции</label
+      ><input type="radio" name="notebook1" id="notebook1_3" checked><label for="notebook1_3">Тикеты</label>
     <!--content-->
-    <div>
-        <h3>Это первая вкладка. :)</h3>
+    <div class="tab">
+        <h3>//1</h3>
     </div>
-    <div>
-        <h3>Это вторая вкладка!</h3>
-        <p>Бесцветные зелёные мысли яростно спят.</p>
+    <div class="tab">
+        <h3>//2</h3>
     </div>
-    <div> 
-        <div class="head">
-            <button class="long">назад к списку</button>
-            <p class="title">ТИКЕТ МММ-888-88888</p>
-            <p><strong class="title">Тема:</strong>Я оплатил заявку, но мне ничего не 
+    <div class="tab"> <!-- 3th tab -->
+        <div id="head">
+            <p class="title">Тикет ммм-888-88888</p>
+            <p><strong class="title">Тема:</strong> Я оплатил заявку, но мне ничего не 
 пришло. Что делать? Кто виноват?</p>
-            <p><strong class="title">Статус:</strong>Открыта</p>
-            <p><strong class="title">Приоритет:</strong>Обычный</p>
-            <p><strong class="title">Отдел:</strong>Бухгалтерия</p>
-            <p><strong class="title">Создан:</strong>2015-12-06 12:42:18</p>
-            <p><strong class="title">Последний вопрос:</strong>2015-12-06 12:42:18</p>
-            <p><strong class="title">Последний ответ:</strong>2015-12-06 12:42:18</p>
+            <p><strong class="title">Статус:</strong>  Открыта</p>
+            <p><strong class="title">Приоритет:</strong> Обычный</p>
+            <p><strong class="title">Отдел:</strong> Бухгалтерия</p>
+            <p><strong class="title">Создан:</strong> 2015-12-06 12:42:18</p>
+            <p><strong class="title">Последний вопрос:</strong> 2015-12-06 12:42:18</p>
+            <p><strong class="title">Последний ответ:</strong> 2015-12-06 12:42:18</p>
+            <button class="long">назад к списку</button>
+            
         </div> <!-- end head -->
         
-        <div class="converse">
+        <div id="converse">
             <div class="message">
-                <img src="" alt="" class="avatar">
+                <img src="img/raccoon.png" alt="" class="avatar">
                 <span class="log">example@mail.com </span>
                 <span class="name">(Геннадий Васильевич Енот)</span>
                 <span class="time">2015-12-06  // 12:42:18</span>
@@ -46,7 +46,7 @@
                 игнорирует даже мой кот.</p>
             <!-- child msg-->
                    <div class="message">
-                        <img src="" alt="" class="avatar">
+                        <img src="img/supp.png" alt="" class="avatar">
                         <span class="log">Агент поддержки </span>
                         <span class="name">(Наталья Медведева)</span>
                         <span class="time">2015-12-06  // 13:47:33</span>
@@ -56,7 +56,7 @@
                     </div>
             </div> 
             <div class="message">
-                <img src="" alt="" class="avatar">
+                <img src="img/raccoon.png" alt="" class="avatar">
                 <span class="log">example@mail.com </span>
                 <span class="name">(Геннадий Васильевич Енот)</span>
                 <span class="time">2015-12-06  // 12:42:18</span>
@@ -65,7 +65,7 @@
                 <span class="file">фото_кота.jpg</span></p>
             <!-- child msg-->
                    <div class="message">
-                        <img src="" alt="" class="avatar">
+                        <img src="img/supp.png" alt="" class="avatar">
                         <span class="log">Агент поддержки </span>
                         <span class="name">(Наталья Медведева)</span>
                         <span class="time">2015-12-06  // 13:47:33</span>
@@ -74,20 +74,23 @@
                     </div>
             </div>
         </div> <!--end conversation-->
-        <div class="new_message">
-            <img src="" alt="" class="avatar"> 
-            <form action="/login" method="post">
-              <textarea name="comment"></textarea>
-              <button name="submit">Ответить</button>
+        <footer id="new_message">
+           <span class="title">Написать ответ</span>
+            <img src="img/raccoon.png" alt="" class="avatar"> 
+            <form action="" method="post">
+             <textarea name="comment"></textarea>
               <div class="attache">
-                  <input type="file" name="file">
-             <p class="demand">Допустимый объем файла - до 2 МБ</p>
-             <p class="demand">Допустимые форматы файла - JPG, PNG, GIF, TXT, 
-DOCX, RTF, PDF</p>
+                 <button type="button">Выбрать файл</button>
+                 <div>Прикрепить вложение</div>
+                 <input type="file" name="file">
               </div>
+              <p class="demand">Допустимый объем файла - до 2 МБ</p>
+              <p class="demand">Допустимые форматы файла - JPG, PNG, GIF, TXT, 
+    DOCX, RTF, PDF</p>
+              <button name="submit">Ответить</button>
             </form>
-        </div> <!--end new_message-->
-        <a href="#" class="button">НАВЕРХ</a>
+        </footer> <!--end new_message-->
+        <a href="#head" class="up">НАВЕРХ</a>
     </div> <!-- end 3-th tab-->
     </div>
 </div> <!-- end wrapper -->
