@@ -62,8 +62,40 @@ a{
 // МАЛЕНЬКИЕ УСТРОЙСТВА
 // ***********************************
 @include breakpoint($breakpoint-small) {
+    #header {
+       @include span(12 nest);
+        text-align: center;
+        vertical-align: middle;
+        padding-top: .6em;
+        display: table;
+        span {
+            line-height: 2em;
+        }
+        img {
+            height: 1.4em;
+            margin: .2em .4em;
+            vertical-align: middle;
+        }
+        span {
+        }
+        > .nav {
+            @include span(first 2 of 12);
+        }
+        > .logo {
+           @include span(6 of 12); 
+        }
+        > .login {
+            @include span(last 4 of 12);
+            > span {
+                text-transform: uppercase;
+                font-size: .7em;
+            }
+        }
+    }
+    
      // Tabs box
-    .notebook { 
+    .notebook {
+        @include span(12);
         white-space: nowrap;
         overflow: hidden;
         padding-top: .6em;
@@ -114,9 +146,9 @@ a{
         display: none;
     }
     //////////////////
-    //  Header
+    //  info
     //////////////////
-    #head {
+    #info {
         @include span(12);
         border-bottom: 1px solid $color-tx;
         margin-bottom: span(1);
