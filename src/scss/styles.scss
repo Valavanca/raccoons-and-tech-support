@@ -2,15 +2,12 @@
 @import "bower_components/susy/sass/susy";
 @import "bower_components/compass-breakpoint/stylesheets/breakpoint";
 
-//@import "reset";
-//@import "variables";
-
 // Susy
 $susy: (
   columns: 12,
   gutters: 1/2,
   math: fluid,
-  gutter-position: after, //inside
+  gutter-position: inside, //inside after
   debug: (
     image: show,
     color: rgba(#16f416, .15),
@@ -21,26 +18,21 @@ $susy: (
 
 // variables
   $font-fml: Geneva, Arial, Helvetica, sans-serif;
-  $font-size-default: 14pt;
   $font-sz: 1.1em;
   $color-tx: #B4B4B4;
   $color-bg: #fff;
-  $high-tide: 600px;
 
-  $color-primary: #6A9641;
-  $color-secondary: #EBB010;
   $white: #EDE3C7;
-  $black: #2E2713;
   $blue: #1169E9;
   $color-background: #B8BFCF;
   
   $breakpoint-small: 320px;
-  $breakpoint-medium: 800px;
-  $breakpoint-large: 1000px;
+  $breakpoint-medium: 680px;
+  $breakpoint-large: 800px;
 html,body{
+  @include span(12);
   font-family: $font-fml;
   font-size: $font-sz;
-  //line-height: $line-height;
   color: $color-tx;
   background-color: $color-bg;
   margin:0;
@@ -51,12 +43,6 @@ html,body{
 a{
   text-decoration: none;
 }
-
-.wrapper{
-  //padding: 1em .6em;
-}
-
-
 
 // ***********************************
 // МАЛЕНЬКИЕ УСТРОЙСТВА
@@ -108,23 +94,12 @@ a{
             padding: .7em;
             cursor: pointer;
             position: relative;
-            &:not(:last-of-type) {
-                border-right: none;
-            }
             &:hover {
                 background-color: #F6F6F6;
             }
-            &:last-of-type::after {
-                display: block;
-                border-bottom: 1px solid gray; // полоска уявного блока
-                width: 2000px;
-                content: "";
-                position: absolute;
-                left: 100%;
-            } 
         }
         > input:checked + label {
-            background-color: #fff;
+            background-color: $color-bg;
             color: $blue;
             //padding-top: 1.1em;
             //margin-top: .6em;
@@ -141,39 +116,38 @@ a{
         display: block;
     }
     .tab {
-        @include container(90%);
         white-space: normal; 
         display: none;
+        box-shadow: 0 0 15px rgba(0,0,0,0.5);
     }
     //////////////////
     //  info
     //////////////////
     #info {
-        @include span(12);
+        @include span(12 nest);
         border-bottom: 1px solid $color-tx;
-        margin-bottom: span(1);
-        > .title {
+        h2.title {
             text-transform: uppercase;
         }
         strong {
             color: #B4B4B4;
         }
-        button.long {
-            @include span(8);
-            font-size: $font-sz;
-            color: #1169E9;
-            background-color: #fff;
-            border: none;
-            margin-left: span(2 wide);
-            margin-bottom: span(1);
-            box-shadow: 0 0 15px rgba(0,0,0,0.5);
-            height: 1.7em;
-            &::before {
-                content: "<<";
-                font-weight: 900;
-                margin-right: span(1);
-                
-            }
+    }
+    button.long {
+        @include span(8);
+        font-size: $font-sz;
+        color: #1169E9;
+        background-color: $color-bg;
+        border: none;
+        margin-left: span(2 wide);
+        margin-bottom: span(1);
+        box-shadow: 0 0 15px rgba(0,0,0,0.5);
+        height: 1.7em;
+        &::before {
+            content: "<<";
+            font-weight: 900;
+            margin-right: span(1);
+            
         }
     }
     
@@ -206,10 +180,10 @@ a{
         }
     }
     
-    /////
+    ///// Footer
     
-    footer#new_message {
-        @include span(12);
+    #new_message {
+        @include span(12 nest);
         border-bottom: 1px solid $color-tx;
         padding-bottom: 1em;
         span.title{
@@ -229,31 +203,35 @@ a{
         button {
                 border: none;
                 box-shadow: 0 0 15px rgba(0,0,0,0.5);
-                background-color: #fff;
+                background-color: $color-bg;
                 color: $blue;
+                font-size: 1em;
+                height: 1.3em;
                 &[name=submit] {
                     margin: .4em;
                     padding: .4em;
-                    @include span(10);
+                    height: 1.8em;
+                    @include span(10 of 12);
                     @include push(1);
                 }
         }
         
     } 
         .attache {
-            @include span(12);
+            @include span(12 nest);
             position: relative;
             overflow: hidden;
-            padding: 1em 1em 1em 0;
-            height: 1.6em;      
+            padding: 1em 1em 1.5em 0;
+            height: 1.6em;    
             > button {
-                float: right;
-                height: 100%
+                @include span(last 4.5 of 12);
+                height: 1.8em;
             }
             > div{
+                @include span(last 7.5 of 12);
                 border: 1px solid $color-tx;
                 font-size: .8em;
-                height: 1.8em;
+                height: 1.6em;
                 vertical-align: middle;
             }
             input[type=file]{
@@ -267,10 +245,12 @@ a{
             }
         }
         .demand {
-        color: #FF0000;
-        font-size: .8em;
-        margin: .3em;
-    } /*end footer*/
+            @include span(12 of 12);
+            color: #FF0000;
+            font-size: .8em;
+            margin: .3em;
+            
+        } /*end footer*/
     .up {
         @include span(12);
         text-align: center;
@@ -286,13 +266,94 @@ a{
 // ***********************************
 // СРЕДНИЕ УСТРОЙСТВА
 // ***********************************
-@include breakpoint($breakpoint-medium){
-
-
-}
-// ***********************************
+@include breakpoint($breakpoint-medium) {
+    #header {
+        display: none;
+    }
+    .notebook {
+        @include span(12);
+        margin: 0 1em;
+        > input + label {
+            display: inline-block;
+            &:hover {
+                background-color: #F6F6F6;
+            }
+        }
+        > input:checked + label {
+            padding-top: 1.1em;
+            margin-top: .6em;
+            box-shadow: 0 -4px 10px rgba(0,0,0,0.5);
+        }
+    }
+    .tab {
+        @include span(12);
+        margin-top: -.1em;
+        border: 1px solid $color-tx;
+    }
+    
+    //////
+    
+     #converse {
+        .avatar {
+            @include span(first 1.5 of 12);
+        }
+        .message {
+            > .message {
+                @include push(2 of 12);
+                .avatar {
+                    @include span(first 1.5 of 12);
+                }
+            }
+        }
+    } 
+}// ***********************************
 // БОЛЬШИЕ УСТРОЙСТВА
 // ***********************************
 @include breakpoint($breakpoint-large){
-
+    .wrapper {
+        @include span(last 4 of 12);
+    }
+    button.long {
+        @include span(first 4 of 12);
+        margin-top: span(2);
+    }
+    ////
+    #new_message {
+        .avatar {
+            @include span(1.5 of 12);
+            @include push(0.5 of 12);
+            display: block;
+        }
+        textarea {
+            @include span(10);
+            height: 6em;
+        }
+    }
+    //// footer
+    .attache {
+        > button {
+                @include span(last 2 of 12);
+                height: 1.8em;
+            }
+        > div {
+            @include span(last 3 of 12);
+            border: 1px solid $color-tx;
+            font-size: .8em;
+            height: 1.6em;
+            vertical-align: middle;
+        }
+    }
+    
+    #new_message button {
+        &[name=submit] {
+            @include span(2 of 12);
+            @include push(2);
+            height: 2em;
+        }
+    }
+    .demand {
+        @include span(last 5 of 12);
+        padding: 0;
+    }
+    
 }
